@@ -1,13 +1,13 @@
 <p align="center"><img src="pkfsos-banner.png" alt="PKF-SOS: Based on PKForge, a Vibe Coded Steam OS Port" width="100%" /></p>
 
 <p align="center">
-  <a href="../../releases/latest"><img src="https://img.shields.io/badge/Download-AppImage-2789CD?logo=linux&logoColor=white" alt="Download" /></a>
-  <img src="https://img.shields.io/badge/Platform-Steam%20Deck%20%2F%20Linux-1B2838?logo=steamdeck&logoColor=white" alt="Steam Deck and Linux" />
+  <a href="../../releases/latest"><img src="https://img.shields.io/badge/Download-Latest%20release-2789CD" alt="Download" /></a>
+  <img src="https://img.shields.io/badge/Platform-Steam%20Deck%20%2F%20Linux%20%2F%20Windows-1B2838?logo=steamdeck&logoColor=white" alt="Steam Deck, Linux and Windows" />
   <img src="https://img.shields.io/badge/Built%20with-100%25%20AI-FFD54F" alt="100% AI built" />
   <img src="https://img.shields.io/badge/License-GPLv3-blue" alt="GPLv3" />
 </p>
 
-<p align="center"><b>A Pokémon save editor and Bank for the Steam Deck and other Linux handhelds.<br/>Controller first, touch friendly, shipped as an AppImage.</b></p>
+<p align="center"><b>A Pokémon save editor and Bank for the Steam Deck, Linux and Windows.<br/>Controller first, touch friendly. Linux AppImage and Windows download.</b></p>
 
 ---
 
@@ -27,7 +27,7 @@
 
 ## What is this?
 
-PKForge is an excellent Pokémon save editor and cross-generation Bank for Android. It has no Linux version, so
+**Based on PKForge.** PKForge is an excellent Pokémon save editor and cross-generation Bank for Android. It has no Linux version, so
 Steam Deck players who run their emulators through EmuDeck could not use it. PKF-SOS takes the original app's open
 source engine (the parts that read, edit and write saves) and puts a new, separate Linux interface on top of it,
 designed for a handheld: big buttons, D-pad navigation and an on-screen hint bar.
@@ -71,11 +71,16 @@ actually been tested.
 
 - **Saves list with cover-art thumbnails.** Point it at the folders your emulators use and it finds your saves. Folders
   and scanning live under **Settings**, along with UI Themes and a Controller Test screen.
-- **Pokémon editor.** Stats, IVs, EVs, moves, nature, ability, held item, shininess, with a live legality check.
-  Copy a Pokémon out as a Showdown set.
+- **Pokémon editor.** Tabs for Info, Moves, IVs, EVs and Current condition (heal, cure status), with type plates and
+  a live legality check. Copy a Pokémon out as a Showdown set.
 - **Collection.** A grid of every Pokémon you own across all games and the Bank. Edit any copy directly, including
   ones sitting in a save or the party. Tap a missing species to generate it.
 - **Bank.** A cross-game Bank for storing Pokémon outside any game file.
+- **Import / Export (in the Bank).** Bring in a **PKSM** bank (`.bnk` with its `.json`), a PKSM dumps `.zip` or loose
+  **PKHeX** `.pk*` files or folders, with a preview first. Export the Bank as a folder of PKHeX files or as a PKSM bank.
+- **Transfer.** Move or copy a Pokémon between two saves side by side, with a conversion preview.
+- **Save hub.** Tap a save's thumbnail for Box, Collection, Party, Bag, Trainer Card and Pokédex.
+- **Party.** See your party's health and status, restore health, remove status effects, or tap a sprite to edit it.
 - **Living Dex Autopilot.** Plans a living dex from what you already own. This port adds a **Move or Copy** choice,
   so you can copy into the Bank and keep the originals in your game.
 - **Mystery Gifts.** Browse the bundled event database and send gifts to the Bank or into a save.
@@ -88,6 +93,7 @@ actually been tested.
 - **The Park.** A small mini-game where Pokémon from your collection wander a pixel-art park, chat to each other, and
   can be petted and fed. It is purely cosmetic and **never changes your save files**.
 - **UI Themes.** Eight colour themes, remembered between launches.
+- **Credits & License** screen in Settings.
 - **Controller support.** Everything works with the Steam Deck's D-pad and buttons, with an on-screen hint bar showing
   what each button does. Touch also works.
 
@@ -107,7 +113,7 @@ These protections come from PKForge's engine and were kept:
 ### Not in this port (yet, maybe never)
 
 Compared with the Android original, these are **not** implemented:
-RNG tools, the Poképark (replaced by the simpler Park), Nuzlocke report, encounter browser, QR code and PKSM transfer,
+RNG tools, the Poképark (replaced by the simpler Park), Nuzlocke report, encounter browser, QR code and live PKSM-to-3DS transfer (PKSM bank files can be imported and exported, see above),
 Hardcore mode, item Mystery Gift cards, game-specific editors (event flags, daycare, roamers, honey trees, Poké Beans,
 Grand Underground and similar), hex editor, box wallpapers, music, dual-screen support, and ROM-hack editing. This list
 may be incomplete. If the original has it and it is not in the features list above, assume this port does not.
@@ -120,14 +126,52 @@ number of saves** (see below), so treat everything else as "should work, unprove
 Folder types offered in Settings are aimed at the emulators installed by EmuDeck, such as **RetroArch** (Game Boy,
 GBA, DS) and **Azahar** (3DS). You can also point it at any folder that contains saves.
 
-## Install
+## Download and install
 
-1. Go to **Releases** in this repository and download `PKF-SOS-x86_64.AppImage`.
-2. Make it executable (right-click, Properties, Permissions, "Allow executing as program"), then run it. In Steam
-   Deck Desktop Mode you can add it to Steam as a non-Steam game to launch it from Gaming Mode.
-3. Open **Settings → Folders** and add the folder that holds your saves.
+Go to **[Releases](../../releases/latest)** and open the newest "PKF-SOS build" entry. Each release has two downloads:
 
-Made for the Steam Deck's 1280×800 screen. Linux x86-64 only. No Windows, macOS or ARM builds.
+| You use | Download |
+| --- | --- |
+| Steam Deck or Linux | `PKF-SOS-x86_64.AppImage` |
+| Windows 10 / 11 (64-bit) | `PKF-SOS-windows-x64.zip` |
+
+### Steam Deck / Linux
+
+1. Download the AppImage (in Desktop Mode, use the browser).
+2. Right-click it, **Properties → Permissions**, and tick **Allow executing as program**.
+3. Double-click to run. To launch it from Gaming Mode, right-click it and **Add to Steam**
+   (see [Add it to Steam](#add-it-to-steam-artwork-included)).
+
+### Windows
+
+1. Download the zip and **extract all** into a folder (do not run it from inside the zip).
+2. Open the folder and run **`PKF-SOS.exe`**. Nothing needs installing.
+3. If Windows SmartScreen warns about an unknown publisher, choose **More info → Run anyway**. The app is not
+   code-signed. You can read the source code in this repository and build it yourself if you prefer.
+
+The Windows version is newer and less tested than the Steam Deck one. If it closes unexpectedly, a note is written to
+`%LOCALAPPDATA%\PKForge\crash.log`, which is helpful to include in a bug report.
+
+## Using it
+
+1. Open **Settings → Folders** and add the folder(s) that hold your saves. On the Deck, EmuDeck's RetroArch and Azahar
+   folders are suggested. On Windows, common emulator folders are suggested. Press **Back** to return home.
+2. Your games appear under **Your games**. Tap a thumbnail to open its hub (Box, Collection, Party, Bag, Trainer Card,
+   Pokédex), or use the buttons on the home screen (Bank, Living Dex Autopilot, Transfer and so on).
+3. Edit things in memory, then press **Save**. A restore point is made first, so you can undo from **Restore Points**.
+4. **Close your emulator before editing** a save, and keep your own backups too.
+
+**Controls (Steam Deck):** D-pad moves, **A** selects, **B** goes back, **X / Y** are shown in the bottom hint bar
+where they do something, and **L1 / R1** change page, box or tab. In the Pokémon editor, L1 / R1 switch tabs while the
+tab row is highlighted. Touch and mouse work everywhere too.
+
+**Where your data lives:** the Bank, restore points and settings are in `~/.local/share/PKForge` on Linux and
+`%LOCALAPPDATA%\PKForge` on Windows. Copy that folder to back up or move your Bank.
+
+**Moving a PKSM or PKHeX Bank in or out:** open **Bank → Import / Export**. Pick a file or folder with the built-in
+browser (it has shortcuts for Downloads and SD cards / USB sticks), check the preview, then confirm.
+
+Made for the Steam Deck's 1280×800 screen. Linux x86-64 and Windows x64 only; no macOS or ARM builds.
 
 ## Add it to Steam (artwork included)
 
@@ -153,13 +197,13 @@ Transparency matters here, so exactly how:
 - An AI assistant (Claude, by Anthropic) wrote all of the new code and the build setup.
 - The AI **could not compile or run the program itself.** The owner uploaded the code to GitHub, where an automated
   build (GitHub Actions) compiled it, then pasted any build errors back to the AI to fix. The result was then tried
-  by hand on a Steam Deck.
+  by hand on a Steam Deck and a Windows PC.
 - No human has reviewed the code line by line. There is no automated test suite for the Linux interface.
 
 ## Honest limitations
 
-- **Tested on one device** (a Steam Deck) by one person, with a handful of saves, mainly a Game Boy Advance game
-  (FireRed) and a 3DS save. Other games, other emulators and other Linux machines are untested.
+- **Tested mainly on one Steam Deck, with a quick pass on Windows,** by one person, with a handful of saves, mainly a Game Boy Advance game
+  (FireRed) and a 3DS save. Other games, other emulators and other machines are untested.
 - **AI-written code can contain bugs**, including ones that only show up with certain saves. Several screens were
   added very recently and may crash or misbehave.
 - Please **keep backups** and treat this as beta software.
