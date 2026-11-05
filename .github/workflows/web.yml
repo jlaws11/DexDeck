@@ -1,4 +1,4 @@
-name: Build PKF-SOS Web (test)
+name: Build PKF-SOS Web
 
 on:
   workflow_dispatch:
@@ -45,6 +45,14 @@ jobs:
         run: |
           cp -r web-out/wwwroot site
           touch site/.nojekyll
+          # the sprites and game art, downloaded once by the page and unpacked into its in-memory folder
+          mkdir -p pack/assets/sprites pack/assets/gameart
+          img="external/PKHeX/PKHeX.Drawing.PokeSprite/Resources/img"
+          cp "$img/Big Pokemon Sprites/"*.png pack/assets/sprites/
+          cp "$img/Big Shiny Sprites/"*.png pack/assets/sprites/
+          cp src/PKForge.Linux/assets/gameart/*.png pack/assets/gameart/
+          (cd pack && zip -qr ../site/assets.zip assets)
+          ls -l site/assets.zip
 
       - uses: actions/upload-pages-artifact@v3
         with:
