@@ -1,0 +1,55 @@
+name: Build PKF-SOS Web (test)
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'pkf-sos-port.zip'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  web:
+    runs-on: ubuntu-22.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Add the port files
+        run: |
+          test -f pkf-sos-port.zip || { echo "pkf-sos-port.zip is missing"; exit 1; }
+          unzip -o pkf-sos-port.zip -d .
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Install the WebAssembly tools
+        run: dotnet workload install wasm-tools
+
+      - name: Publish the web build
+        run: dotnet publish src/PKForge.Web/PKForge.Web.csproj -c Release -o web-out
+
+      - name: Prepare the site
+        run: |
+          cp -r web-out/wwwroot site
+          touch site/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
