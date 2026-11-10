@@ -1,13 +1,13 @@
-name: Build PKF-SOS
+name: Build DexDeck
 
 env:
-  PKF_VERSION: "2.2.1"
+  PKF_VERSION: "3.0.0"
 
 on:
   workflow_dispatch:
   push:
     paths:
-      - 'pkf-sos-port.zip'
+      - 'dexdeck-source.zip'
 
 permissions:
   contents: write
@@ -22,8 +22,8 @@ jobs:
 
       - name: Add the port files
         run: |
-          test -f pkf-sos-port.zip || { echo "pkf-sos-port.zip is missing"; exit 1; }
-          unzip -o pkf-sos-port.zip -d .
+          test -f dexdeck-source.zip || { echo "dexdeck-source.zip is missing"; exit 1; }
+          unzip -o dexdeck-source.zip -d .
 
       - uses: actions/setup-dotnet@v4
         with:
@@ -38,7 +38,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: linux-appimage
-          path: PKF-SOS-x86_64.AppImage
+          path: DexDeck-x86_64.AppImage
 
   windows:
     runs-on: ubuntu-22.04
@@ -49,8 +49,8 @@ jobs:
 
       - name: Add the port files
         run: |
-          test -f pkf-sos-port.zip || { echo "pkf-sos-port.zip is missing"; exit 1; }
-          unzip -o pkf-sos-port.zip -d .
+          test -f dexdeck-source.zip || { echo "dexdeck-source.zip is missing"; exit 1; }
+          unzip -o dexdeck-source.zip -d .
 
       - uses: actions/setup-dotnet@v4
         with:
@@ -61,16 +61,16 @@ jobs:
 
       - name: Make the zip
         run: |
-          mkdir PKF-SOS
-          cp -r publish-win/. PKF-SOS/
-          mv PKF-SOS/PKForge.exe PKF-SOS/PKF-SOS.exe
-          printf 'PKF-SOS for Windows\r\n\r\n1. Unzip this whole folder anywhere.\r\n2. Double-click PKF-SOS.exe.\r\n3. Open Settings, then Folders, and add the folder that holds your saves.\r\n\r\nClose your emulator before editing a save. Windows may warn that the app is unrecognised because it is not signed: choose More info, then Run anyway.\r\nUnofficial and AI built. Not affiliated with PKForge. Keep backups of your saves.\r\n' > PKF-SOS/README.txt
-          zip -qr PKF-SOS-windows-x64.zip PKF-SOS
+          mkdir DexDeck
+          cp -r publish-win/. DexDeck/
+          mv DexDeck/PKForge.exe DexDeck/DexDeck.exe
+          printf 'DexDeck for Windows\r\n\r\n1. Unzip this whole folder anywhere.\r\n2. Double-click DexDeck.exe.\r\n3. Open Settings, then Folders, and add the folder that holds your saves.\r\n\r\nClose your emulator before editing a save. Windows may warn that the app is unrecognised because it is not signed: choose More info, then Run anyway.\r\nUnofficial and AI built. Not affiliated with PKForge. Keep backups of your saves.\r\n' > DexDeck/README.txt
+          zip -qr DexDeck-windows-x64.zip DexDeck
 
       - uses: actions/upload-artifact@v4
         with:
           name: windows-zip
-          path: PKF-SOS-windows-x64.zip
+          path: DexDeck-windows-x64.zip
 
   release:
     needs: [linux, windows]
@@ -88,8 +88,8 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: build-${{ github.run_number }}
-          name: PKF-SOS v${{ env.PKF_VERSION }}
+          name: DexDeck v${{ env.PKF_VERSION }}
           prerelease: false
           files: |
-            downloads/PKF-SOS-x86_64.AppImage
-            downloads/PKF-SOS-windows-x64.zip
+            downloads/DexDeck-x86_64.AppImage
+            downloads/DexDeck-windows-x64.zip

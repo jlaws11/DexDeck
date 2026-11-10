@@ -1,10 +1,10 @@
-name: Build PKF-SOS Web
+name: Build DexDeck Web
 
 on:
   workflow_dispatch:
   push:
     paths:
-      - 'pkf-sos-port.zip'
+      - 'dexdeck-source.zip'
 
 permissions:
   contents: read
@@ -28,8 +28,8 @@ jobs:
 
       - name: Add the port files
         run: |
-          test -f pkf-sos-port.zip || { echo "pkf-sos-port.zip is missing"; exit 1; }
-          unzip -o pkf-sos-port.zip -d .
+          test -f dexdeck-source.zip || { echo "dexdeck-source.zip is missing"; exit 1; }
+          unzip -o dexdeck-source.zip -d .
 
       - uses: actions/setup-dotnet@v4
         with:
