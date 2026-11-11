@@ -48,15 +48,16 @@ controller does not work there yet.
 ## Screenshots
 
 <p align="center">
-  <img src="dexdeck-shot-home.png" alt="Home screen with save thumbnails" width="49%" />
-  <img src="dexdeck-shot-collection.png" alt="Collection grid" width="49%" />
+  <img src="dexdeck-shot-home.png" alt="Home screen" width="49%" />
+  <img src="dexdeck-shot-party.png" alt="Party" width="49%" />
 </p>
 <p align="center">
-  <img src="dexdeck-shot-editor.png" alt="Pokémon editor" width="49%" />
-  <img src="dexdeck-shot-pokedex.png" alt="Pokédex editor" width="49%" />
+  <img src="dexdeck-shot-bag.png" alt="Bag" width="49%" />
+  <img src="dexdeck-shot-pokedex.png" alt="Pokédex" width="49%" />
 </p>
 <p align="center">
-  <img src="dexdeck-shot-trainer.png" alt="Trainer card" width="49%" />
+  <img src="dexdeck-shot-transfer.png" alt="Transfer between games" width="49%" />
+  <img src="dexdeck-shot-events.png" alt="Key-Item Events" width="49%" />
 </p>
 
 *Screenshots are taken on a Steam Deck. The bar along the bottom always shows what each button does.*
